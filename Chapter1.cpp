@@ -77,7 +77,34 @@ bool Permutation(const std::string& s, const std::string& match)
 	}
 	return true;
 }
+///////////////////////////////////////////////////////////////////////////////
 
+// Problem 1.4
+///////////////////////////////////////////////////////////////////////////////
+void ReplaceSpaces(char* str, int len)
+{
+	int spaceCount = 0;
+	int newLen = 0;
+	for (int i = 0; i < len; i++)
+		if (str[i] == ' ') spaceCount++;
+	newLen = len + spaceCount*2;
+	str[newLen - 1] = '\0';
+	for (int i = len-1; i >= 0; i--)
+	{
+		if (str[i] == ' ')
+		{
+			str[newLen - 1] = '0';
+			str[newLen - 2] = '2';
+			str[newLen - 3] = '%';
+			newLen -= 3;
+		}
+		else
+		{
+			str[newLen - 1] = str[i];
+			newLen--;
+		}
+	}
+}
 ///////////////////////////////////////////////////////////////////////////////
 
 // test functions
@@ -153,5 +180,23 @@ void Problem_1_3_Test()
 }
 
 ///////////////////////////////////////////////////////////////////////////////
+
+///////////////////////////////////////////////////////////////////////////////
+void Problem_1_4_Test()
+{
+	std::string testStr("Mr John Smith    ");
+	std::cout << "Testing problem 1.4:\n";
+	std::cout << "Input string: " << testStr << '\n';
+	std::cout << "Output string: ";
+	char* output = new char[testStr.length() + 1];
+	strcpy(output, testStr.c_str());
+	ReplaceSpaces(output, 13);
+	std::cout << output << '\n';
+	std::cout << "Test problem 1.4 concluded...\n\n\n\n\n";
+	delete [] output;
+}
+///////////////////////////////////////////////////////////////////////////////
+
+
 
 
