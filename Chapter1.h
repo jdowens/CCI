@@ -3,6 +3,7 @@
 
 #include<iostream>
 #include<vector>
+#include<map>
 #include<string>
 #include<cstring>
 
@@ -15,9 +16,12 @@ bool CharsAllUniqueMem(const std::string& s);
 void SwapChars(char* str, size_t i, size_t j);
 void reverse(char* str);
 
+// Problem 1.3
+bool Permutation(const std::string& s, const std::string& match);
+
 // test functions
-// Problem 1.1
 void Problem_1_1_Test();
 void Problem_1_2_Test();
+void Problem_1_3_Test();
 
 #endif

@@ -56,6 +56,30 @@ void reverse(char* str)
 }
 ///////////////////////////////////////////////////////////////////////////////
 
+// Problem 1.3
+///////////////////////////////////////////////////////////////////////////////
+bool Permutation(const std::string& s, const std::string& match)
+{
+	if (s == match)
+		return true;
+	std::map<char, int> sMap;
+	std::map<char, int> matchMap;
+	for (auto it = s.begin(); it != s.end(); ++it)
+		sMap[*it]++;
+	for (auto it = match.begin(); it != match.end(); ++it)
+		matchMap[*it]++;
+	if (sMap.size() != matchMap.size())
+		return false;
+	for (auto it = sMap.begin(); it != sMap.end(); ++it)
+	{
+		if (matchMap[it->first] != it->second)
+			return false;
+	}
+	return true;
+}
+
+///////////////////////////////////////////////////////////////////////////////
+
 // test functions
 // Problem 1.1
 ///////////////////////////////////////////////////////////////////////////////
@@ -103,3 +127,31 @@ void Problem_1_2_Test()
 	std::cout << "Test problem 1.2 concluded...\n\n\n\n\n";
 }
 ///////////////////////////////////////////////////////////////////////////////
+
+// Problem 1.3
+///////////////////////////////////////////////////////////////////////////////
+void Problem_1_3_Test()
+{
+	std::vector<std::string> test_cases;
+	test_cases.push_back("abc");
+	test_cases.push_back("cab");
+	test_cases.push_back("aaaassdfsd");
+	test_cases.push_back("aaaadfssdsc");
+	test_cases.push_back("");
+	test_cases.push_back("");
+	test_cases.push_back("def");
+	test_cases.push_back("def");
+	std::cout << "Testing problem 1.3:\n";
+	for (auto it = test_cases.begin(); it != test_cases.end(); it +=2)
+	{
+		auto it2 = it+1;
+		std::cout << "Testing match: " << *it << ' ' << *it2 << '\n';
+		std::cout << "Permutation checker returned: "
+		<< Permutation(*it, *it2) << '\n';
+	}
+	std::cout << "Test problem 1.3 concluded...\n\n\n\n\n";
+}
+
+///////////////////////////////////////////////////////////////////////////////
+
+
